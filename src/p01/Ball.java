@@ -37,10 +37,10 @@ public class Ball {
 	}
 
 	public synchronized void reflect() {
-		if (Math.abs(x + 32 - Board.RIGHTBOARD) <  Math.abs(dx)) {
+		if (Math.abs(x + IMG_TAM_X  - Board.RIGHTBOARD) <  Math.abs(dx)) {
 			fi = Math.PI - fi;
 		}
-		if (Math.abs(y + 32 - Board.BOTTOMBOARD) <  Math.abs(dy)) {
+		if (Math.abs(y + IMG_TAM_Y - Board.BOTTOMBOARD) <  Math.abs(dy)) {
 			fi = - fi;
 		}
 		if (Math.abs(x - Board.LEFTBOARD) <  Math.abs(dx)) {
