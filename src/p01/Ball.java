@@ -59,7 +59,6 @@ public class Ball {
 	 * del billar. Es decir en un estado consistente.
 	 */
 	private void checkPostconditions(){
-		// no ponemos sinchronizes porque el metodo 
 		assert ( x  > Board.LEFTBOARD) : "Error: LEFTBOARD"+"x:"+x+" y:"+y;
 		assert ( x + IMG_TAM_X < Board.RIGHTBOARD) : "Error: RIGHTBOARD"+"x:"+x+" y:"+y;
 		assert ( y  > Board.TOPBOARD) : "Error: TOPBOARD"+"x:"+x+" y:"+y;

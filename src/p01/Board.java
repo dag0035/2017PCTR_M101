@@ -27,10 +27,16 @@ public class Board extends JPanel {
 		super.paint(g);
 
 		Graphics2D g2d = (Graphics2D) g;
+		int x, y;
 		if (aBalls != null) {
 			for (int i = 0; i < aBalls.length; i++) {
-				g2d.drawImage(aBalls[i].getImage(), aBalls[i].getX(),
-						aBalls[i].getY(), this);
+				// evitar que un hilo pinte un objeto pasivo de otro hilo
+				// de forma inconsistente.
+				synchronized (aBalls[i]){
+					x = aBalls[i].getX();
+					y = aBalls[i].getY();
+				}
+				g2d.drawImage(aBalls[i].getImage(),x ,y, this);
 			}
 		}
 		g2d.setColor(java.awt.Color.white);
