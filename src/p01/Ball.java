@@ -5,15 +5,17 @@ import javax.swing.ImageIcon;
 //TODO Transform the code to be used safely in a concurrent context.  
 public class Ball {
        //TODO  Find an archive named Ball.png 
-	private String Ball = "Ball.png"; 
+	private String Ball = "ball.png"; 
 
 	private double x,y,dx,dy;
 	private double v,fi;
 	private Image image;
+	private final int IMG_TAM_X = 32;
+	private final int IMG_TAM_Y = 32;
 
 	public Ball() {
 		ImageIcon ii = new ImageIcon(this.getClass().getResource(Ball));
-		image = ii.getImage();
+		image = ii.getImage().getScaledInstance(IMG_TAM_X, IMG_TAM_Y, 0);
 		x = Billiards.Width/4-16;
 		y = Billiards.Height/2-16;
 		v = 5;
