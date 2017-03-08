@@ -63,6 +63,27 @@ public class Billiards extends JFrame {
 		}
 	}
 
+	private class ThreadBall extends Thread{
+		
+		private Ball ball;
+		public ThreadBall(Ball ball){
+			this.ball = ball;
+		}
+		
+		@Override
+		public void run() {
+			try {
+				for(;;) {
+					ball.move();
+					ball.reflect();
+					repaint();
+					Thread.sleep(50);
+				}
+			}
+			catch (InterruptedException e) {return; }
+		}
+	}
+	
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {

@@ -9,7 +9,7 @@ public class Ball {
 
 	private double x,y,dx,dy;
 	private double v,fi;
-	private Image image;
+	private final Image image;
 	private final int IMG_TAM_X = 32;
 	private final int IMG_TAM_Y = 32;
 
