@@ -87,7 +87,7 @@ public class Billiards extends JFrame {
 		}
 	}
 	
-	// TODO Code is executed when start button is pushed
+	// Code is executed when start button is pushed
 	private class StartListener implements ActionListener {
 		@Override
 		/**
@@ -106,7 +106,7 @@ public class Billiards extends JFrame {
 		}
 	}
 
-	// TODO Code is executed when stop button is pushed
+	// Code is executed when stop button is pushed
 	private class StopListener implements ActionListener {
 		@Override
 		/**
@@ -114,14 +114,11 @@ public class Billiards extends JFrame {
 		 * mientras estamos borrando los objetos.
 		 */
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Code is executed when stop button is pushed
 			if (threads != null){
-				//synchronized (Billiards.this){	
 				for ( int i = 0; i < N_BALL; i++){
 					threads[i].interrupt();
 				}
 				threads = null;
-				//}
 			}
 		}
 	}
