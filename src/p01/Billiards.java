@@ -24,6 +24,7 @@ public class Billiards extends JFrame {
 	// Grupo 1 + 3 bolas
 	private final int N_BALL = 4;
 	private Ball[] balls;
+	private Thread[] threads;
 
 	public Billiards() {
 
@@ -84,19 +85,42 @@ public class Billiards extends JFrame {
 		}
 	}
 	
+	// TODO Code is executed when start button is pushed
 	private class StartListener implements ActionListener {
 		@Override
+		/**
+		 * Usamos cerrojo para evitar que se borren los hilos
+		 * mientras se estan creando en StarListener.
+		 */
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Code is executed when start button is pushed
-
+			if ( threads == null){
+				threads = new ThreadBall[N_BALL];
+				initBalls();board.setBalls(balls);
+				for ( int i = 0; i < N_BALL; i++){
+					threads[i] = new ThreadBall(balls[i]);
+					threads[i].start();
+				}
+			}
 		}
 	}
 
+	// TODO Code is executed when stop button is pushed
 	private class StopListener implements ActionListener {
 		@Override
+		/**
+		 * Usamos cerrojo para evitar que se creen hilos 
+		 * mientras estamos borrando los objetos.
+		 */
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when stop button is pushed
-
+			if (threads != null){
+				//synchronized (Billiards.this){	
+				for ( int i = 0; i < N_BALL; i++){
+					threads[i].interrupt();
+				}
+				threads = null;
+				//}
+			}
 		}
 	}
 
