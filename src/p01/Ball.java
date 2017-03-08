@@ -32,7 +32,8 @@ public class Ball {
 		}
 		x += dx;   
 		y += dy;
-		//TODO Check postcondition
+		//Check postcondition
+		checkPostconditions();
 	}
 
 	public void reflect() {
@@ -48,9 +49,23 @@ public class Ball {
 		if (Math.abs(y - Board.TOPBOARD) <  Math.abs(dy)) {
 			fi = - fi;
 		}
-		//TODO Check postcondition	
+		
+		//Check postcondition	
+		checkPostconditions();
 	}
 
+	/**
+	 * Se comprueba que las nuevas coordenadas x e y se encuentran dentro del tablero
+	 * del billar. Es decir en un estado consistente.
+	 */
+	private void checkPostconditions(){
+		// no ponemos sinchronizes porque el metodo 
+		assert ( x  > Board.LEFTBOARD) : "Error: LEFTBOARD"+"x:"+x+" y:"+y;
+		assert ( x + IMG_TAM_X < Board.RIGHTBOARD) : "Error: RIGHTBOARD"+"x:"+x+" y:"+y;
+		assert ( y  > Board.TOPBOARD) : "Error: TOPBOARD"+"x:"+x+" y:"+y;
+		assert ( y + IMG_TAM_Y < Board.BOTTOMBOARD) : "Error:BOTTONBOARD"+"x:"+x+" y:"+y;
+	}
+	
 	public int getX() {
 		return (int)x;
 	}
